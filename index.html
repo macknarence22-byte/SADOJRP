@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>San Andreas Department of Justice Roleplay</title>
+  <meta name="description" content="A full hardcore realism FiveM community. Law Enforcement, Civilian Life, Gang Life, Fire & EMS across San Andreas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #2b2d30;
+      color: #ced2d6;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+    }
+    a { color: #d4d8db; text-decoration: underline; }
+    a:hover { color: #fff; }
+    img { display: block; max-width: 100%; height: auto; }
+    .banner {
+      width: 100%;
+      position: relative;
+      line-height: 0;
+    }
+    .banner img {
+      width: 100%;
+      height: 460px;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+    }
+    .banner-title {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(35,37,39,1) 0%, rgba(35,37,39,0.7) 60%, transparent 100%);
+      padding: 48px 0 32px;
+      text-align: center;
+    }
+    .banner-title h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(32px, 5vw, 58px);
+      font-weight: 800;
+      color: #f0f3f5;
+      line-height: 1.05;
+      letter-spacing: 0.01em;
+    }
+    .banner-title p {
+      font-size: 14px;
+      color: #8f969c;
+      margin-top: 8px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .page-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 56px 28px 80px;
+    }
+    .prose h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 800;
+      color: #f0f3f5;
+      margin-bottom: 14px;
+      margin-top: 48px;
+      line-height: 1.1;
+    }
+    .prose h2:first-child { margin-top: 0; }
+    .prose h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      color: #e0e4e8;
+      margin-top: 36px;
+      margin-bottom: 12px;
+    }
+    .prose p {
+      color: #9aa0a6;
+      margin-bottom: 16px;
+    }
+    .prose p strong {
+      color: #d4d8db;
+      font-weight: 600;
+    }
+    .prose ul {
+      list-style: none;
+      margin: 0 0 20px 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .prose ul li {
+      color: #9aa0a6;
+      padding-left: 20px;
+      position: relative;
+    }
+    .prose ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: #4e5358;
+    }
+    .divider {
+      border: none;
+      border-top: 1px solid #3a3d41;
+      margin: 48px 0;
+    }
+    .cards-heading {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 800;
+      color: #f0f3f5;
+      margin-bottom: 32px;
+    }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .card {
+      background: #252729;
+      border: 1px solid #383b3f;
+      padding: 24px 20px 22px;
+    }
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 14px;
+      color: #7a8086;
+    }
+    .card h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #e8eaec;
+      margin-bottom: 8px;
+      line-height: 1.2;
+    }
+    .card p {
+      font-size: 13px;
+      color: #7a8086;
+      line-height: 1.6;
+    }
+    .dept-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: #383b3f;
+      border: 1px solid #383b3f;
+      margin-bottom: 16px;
+    }
+    .dept-row {
+      background: #252729;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .dept-abbr {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: #f0f3f5;
+      min-width: 64px;
+    }
+    .dept-info strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: #d4d8db;
+      margin-bottom: 2px;
+    }
+    .dept-info span {
+      font-size: 13px;
+      color: #7a8086;
+    }
+    .cta-box {
+      background: #252729;
+      border: 1px solid #383b3f;
+      padding: 36px 32px;
+      text-align: center;
+      margin-top: 48px;
+    }
+    .cta-box h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: #f0f3f5;
+      margin-bottom: 10px;
+    }
+    .cta-box p {
+      color: #8f969c;
+      margin-bottom: 22px;
+      max-width: 52ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      height: 44px;
+      padding: 0 28px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: background 110ms, color 110ms;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: #d4d8db;
+      color: #1c1e20;
+      border-color: #d4d8db;
+    }
+    .btn-primary:hover { background: #eaeced; color: #1c1e20; }
+    footer {
+      border-top: 1px solid #383b3f;
+      padding: 28px 28px 40px;
+      text-align: center;
+    }
+    .footer-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      color: #f0f3f5;
+      margin-bottom: 6px;
+    }
+    .footer-copy {
+      font-size: 12px;
+      color: #4e5358;
+    }
+    @media (max-width: 720px) {
+      .banner img { height: 320px; }
+      .cards-grid { grid-template-columns: 1fr 1fr; }
+      .dept-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+    }
+    @media (max-width: 480px) {
+      .page-body { padding: 40px 20px 60px; }
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <img src="images/background.png" alt="San Andreas Department of Justice Roleplay" />
+    <div class="banner-title">
+      <h1>San Andreas Department of Justice Roleplay</h1>
+      <p>FiveM &mdash; Hardcore Realism &mdash; Full Server</p>
+    </div>
+  </div>
+  <div class="page-body">
+    <div class="prose">
+      <h2>Welcome to SA DOJ Roleplay.</h2>
+      <p>
+        <strong>San Andreas Department of Justice Roleplay</strong> is a new FiveM community built on one principle — realism. We are a full server. Law enforcement, civilian life, Fire and EMS, criminal activity, and everything in between. Everyone has a role here and everyone is held to the same standard.
+      </p>
+      <p>
+        We are not a Hardcore Realism server. If you want serious, grounded roleplay with real command structure and a community that actually gives a damn about quality, this is the place.
+      </p>
+      <p>
+        San Andreas Department of Justice Roleplay is brand new and we are building this the right way from the ground up. That means the right people, the right culture, and the right foundation before anything else. Applications are open across all departments and civilian roles right now.
+      </p>
+      <hr class="divider" />
+      <h3>Community Requirements</h3>
+      <ul>
+        <li>Be 18 years or older</li>
+        <li>Speak and understand English</li>
+        <li>Own a legal copy of GTA V on PC</li>
+        <li>Have a capable PC, working headset, and microphone</li>
+        <li>Be willing to follow chain of command and server rules</li>
+        <li>Join our Discord and submit your application there</li>
+      </ul>
+      <hr class="divider" />
+      <h2>Law Enforcement Departments</h2>
+      <p>Three agencies are active at launch. Each operates its own command structure and jurisdiction. The realism standard is the same across all three.</p>
+    </div>
+    <div class="dept-list">
+      <div class="dept-row">
+        <span class="dept-abbr">SASP</span>
+        <div class="dept-info">
+          <strong>San Andreas State Police</strong>
+          <span>Statewide patrol, highway enforcement, and major incident command across all of San Andreas.</span>
+        </div>
+      </div>
+      <div class="dept-row">
+        <span class="dept-abbr">LSPD</span>
+        <div class="dept-info">
+          <strong>Los Santos Police Department</strong>
+          <span>City policing, active urban response, and tight scene discipline inside Los Santos.</span>
+        </div>
+      </div>
+      <div class="dept-row">
+        <span class="dept-abbr">BCSO</span>
+        <div class="dept-info">
+          <strong>Blaine County Sheriff&rsquo;s Office</strong>
+          <span>County enforcement, rural calls, and open territory coverage across Blaine County.</span>
+        </div>
+      </div>
+    </div>
+    <hr class="divider" />
+    <p class="cards-heading">What Else Is in the Server</p>
+    <div class="cards-grid">
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+        </svg>
+        <h4>Civilian Roleplay</h4>
+        <p>Live your life in San Andreas. Run a business, own property, and interact with the world around you as an everyday citizen.</p>
+      </div>
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <h4>Apartment &amp; Housing</h4>
+        <p>Rent your own place, pay bills, and build out your civilian life with a real home base inside the server.</p>
+      </div>
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+        </svg>
+        <h4>Business &amp; Economy</h4>
+        <p>Own and operate businesses, engage with the in-server economy, and build something other players actually interact with.</p>
+      </div>
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+        </svg>
+        <h4>Fire &amp; EMS</h4>
+        <p>Emergency medical and fire response roles. Played with the same realism standard as law enforcement.</p>
+      </div>
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+        </svg>
+        <h4>Legal System</h4>
+        <p>Attorneys, judges, and court proceedings. The DOJ name is not just for show — civilian legal roleplay is part of this server.</p>
+      </div>
+      <div class="card">
+        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+        </svg>
+        <h4>Criminal Activity</h4>
+        <p>Organized crime and street-level play handled realistically and within server standards. Not an excuse to minge.</p>
+      </div>
+    </div>
+    <hr class="divider" />
+    <div class="prose">
+      <h2>How to Join</h2>
+      <p>Getting started is straightforward. Join our Discord, read the rules, and submit your application for the department or civilian role you want. Once reviewed and approved you will be whitelisted and guided through onboarding.</p>
+      <p>Applications are open right now for all law enforcement departments and civilian roles. We are a new server and this is a ground floor opportunity to help build the culture the right way from day one.</p>
+    </div>
+    <div class="cta-box">
+      <h3>Applications Are Open.</h3>
+      <p>SA DOJ is recruiting for all departments and civilian roles. Join the Discord and put in your application today.</p>
+      <a href="#" class="btn btn-primary">Join Our Discord</a>
+    </div>
+    <div class="prose" style="margin-top: 48px; text-align: center;">
+      <p style="font-size:13px; color:#4e5358;">
+        To everyone who joins us and helps build this community from day one &mdash; thank you.<br />
+        <strong style="color:#6d7479;">Together, we build something worth being part of.</strong>
+      </p>
+    </div>
+  </div>
+  <footer>
+    <p class="footer-name">SAN ANDREAS DEPARTMENT OF JUSTICE ROLEPLAY</p>
+    <p class="footer-copy">&copy; 2024 San Andreas Department of Justice Roleplay &mdash; All rights reserved.</p>
+  </footer>
+</body>
+</html>
