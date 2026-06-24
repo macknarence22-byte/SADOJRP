@@ -334,4 +334,3 @@ window.addEventListener("resize", render);
 
 /* ── Init ── */
 buildCards();
-
