@@ -1,381 +1,1065 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>San Andreas Department of Justice Roleplay</title>
-  <meta name="description" content="A full hardcore realism FiveM community. Law Enforcement, Civilian Life, Gang Life, Fire & EMS across San Andreas." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      background: #2b2d30;
-      color: #ced2d6;
-      font-family: 'Inter', sans-serif;
-      font-size: 15px;
-      line-height: 1.75;
-    }
-    a { color: #d4d8db; text-decoration: underline; }
-    a:hover { color: #fff; }
-    img { display: block; max-width: 100%; height: auto; }
-    .banner {
-      width: 100%;
-      position: relative;
-      line-height: 0;
-    }
-    .banner img {
-      width: 100%;
-      height: 460px;
-      object-fit: cover;
-      object-position: center 30%;
-      display: block;
-    }
-    .banner-title {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: linear-gradient(to top, rgba(35,37,39,1) 0%, rgba(35,37,39,0.7) 60%, transparent 100%);
-      padding: 48px 0 32px;
-      text-align: center;
-    }
-    .banner-title h1 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(32px, 5vw, 58px);
-      font-weight: 800;
-      color: #f0f3f5;
-      line-height: 1.05;
-      letter-spacing: 0.01em;
-    }
-    .banner-title p {
-      font-size: 14px;
-      color: #8f969c;
-      margin-top: 8px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      font-weight: 600;
-    }
-    .page-body {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 56px 28px 80px;
-    }
-    .prose h2 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(24px, 3vw, 34px);
-      font-weight: 800;
-      color: #f0f3f5;
-      margin-bottom: 14px;
-      margin-top: 48px;
-      line-height: 1.1;
-    }
-    .prose h2:first-child { margin-top: 0; }
-    .prose h3 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 21px;
-      font-weight: 700;
-      color: #e0e4e8;
-      margin-top: 36px;
-      margin-bottom: 12px;
-    }
-    .prose p {
-      color: #9aa0a6;
-      margin-bottom: 16px;
-    }
-    .prose p strong {
-      color: #d4d8db;
-      font-weight: 600;
-    }
-    .prose ul {
-      list-style: none;
-      margin: 0 0 20px 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .prose ul li {
-      color: #9aa0a6;
-      padding-left: 20px;
-      position: relative;
-    }
-    .prose ul li::before {
-      content: '—';
-      position: absolute;
-      left: 0;
-      color: #4e5358;
-    }
-    .divider {
-      border: none;
-      border-top: 1px solid #3a3d41;
-      margin: 48px 0;
-    }
-    .cards-heading {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: clamp(26px, 3vw, 36px);
-      font-weight: 800;
-      color: #f0f3f5;
-      margin-bottom: 32px;
-    }
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 48px;
-    }
-    .card {
-      background: #252729;
-      border: 1px solid #383b3f;
-      padding: 24px 20px 22px;
-    }
-    .card-icon {
-      width: 40px;
-      height: 40px;
-      margin-bottom: 14px;
-      color: #7a8086;
-    }
-    .card h4 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 17px;
-      font-weight: 700;
-      color: #e8eaec;
-      margin-bottom: 8px;
-      line-height: 1.2;
-    }
-    .card p {
-      font-size: 13px;
-      color: #7a8086;
-      line-height: 1.6;
-    }
-    .dept-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      background: #383b3f;
-      border: 1px solid #383b3f;
-      margin-bottom: 16px;
-    }
-    .dept-row {
-      background: #252729;
-      padding: 20px 24px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .dept-abbr {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 22px;
-      font-weight: 800;
-      color: #f0f3f5;
-      min-width: 64px;
-    }
-    .dept-info strong {
-      display: block;
-      font-size: 14px;
-      font-weight: 600;
-      color: #d4d8db;
-      margin-bottom: 2px;
-    }
-    .dept-info span {
-      font-size: 13px;
-      color: #7a8086;
-    }
-    .cta-box {
-      background: #252729;
-      border: 1px solid #383b3f;
-      padding: 36px 32px;
-      text-align: center;
-      margin-top: 48px;
-    }
-    .cta-box h3 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 28px;
-      font-weight: 800;
-      color: #f0f3f5;
-      margin-bottom: 10px;
-    }
-    .cta-box p {
-      color: #8f969c;
-      margin-bottom: 22px;
-      max-width: 52ch;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      height: 44px;
-      padding: 0 28px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 1px solid transparent;
-      transition: background 110ms, color 110ms;
-      cursor: pointer;
-    }
-    .btn-primary {
-      background: #d4d8db;
-      color: #1c1e20;
-      border-color: #d4d8db;
-    }
-    .btn-primary:hover { background: #eaeced; color: #1c1e20; }
-    footer {
-      border-top: 1px solid #383b3f;
-      padding: 28px 28px 40px;
-      text-align: center;
-    }
-    .footer-name {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 14px;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      color: #f0f3f5;
-      margin-bottom: 6px;
-    }
-    .footer-copy {
-      font-size: 12px;
-      color: #4e5358;
-    }
-    @media (max-width: 720px) {
-      .banner img { height: 320px; }
-      .cards-grid { grid-template-columns: 1fr 1fr; }
-      .dept-row { flex-direction: column; align-items: flex-start; gap: 8px; }
-    }
-    @media (max-width: 480px) {
-      .page-body { padding: 40px 20px 60px; }
-      .cards-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>San Andreas Department of Justice</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #c9a84c;
+            --gold-soft: rgba(201, 168, 76, 0.12);
+            --gold-glow: rgba(201, 168, 76, 0.22);
+            --navy: rgba(10, 18, 36, 0.55);
+            --navy-deep: rgba(6, 12, 26, 0.70);
+            --glass-border: rgba(255, 255, 255, 0.07);
+            --glass-border-gold: rgba(201, 168, 76, 0.22);
+            --glass-shadow: 0 20px 56px rgba(0, 0, 0, 0.42);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            user-select: none;
+            -webkit-user-select: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+            font-family: 'Inter', sans-serif;
+            color: #fff;
+            cursor: default;
+        }
+
+        /* ───── Background Video ───── */
+        #bg-video {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Gradient overlay for depth */
+        .screen-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            background:
+                linear-gradient(to bottom, rgba(0,0,0,0.18) 0%, transparent 38%, transparent 62%, rgba(0,0,0,0.52) 100%),
+                linear-gradient(to right, rgba(0,0,0,0.32) 0%, transparent 40%, transparent 60%, rgba(0,0,0,0.20) 100%);
+            pointer-events: none;
+        }
+
+        /* ───── Top Bar ───── */
+        .top-bar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 28px 14px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.50) 0%, transparent 100%);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .brand-emblem {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            border: 1px solid var(--glass-border-gold);
+            background:
+                radial-gradient(circle at top left, rgba(201,168,76,0.18), transparent 48%),
+                linear-gradient(135deg, rgba(201,168,76,0.09), rgba(10,18,36,0.60) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            box-shadow: 0 4px 18px rgba(201,168,76,0.12);
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .brand-kicker {
+            font-size: 9px;
+            letter-spacing: 2.4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            opacity: 0.88;
+        }
+
+        .brand-name {
+            font-size: 15px;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 0.1px;
+        }
+
+        .server-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--glass-border);
+            background: rgba(10,10,14,0.38);
+            backdrop-filter: blur(8px);
+            font-size: 12px;
+            color: rgba(255,255,255,0.72);
+        }
+
+        .status-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #4ade80;
+            box-shadow: 0 0 6px rgba(74,222,128,0.55);
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.65; transform: scale(0.85); }
+        }
+
+        /* ───── Left Action Buttons ───── */
+        .left-actions {
+            position: fixed;
+            left: 28px;
+            bottom: 50%;
+            transform: translateY(50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            padding: 11px 16px;
+            border-radius: 12px;
+            border: 1px solid var(--glass-border);
+            background:
+                radial-gradient(circle at top left, var(--gold-soft), transparent 42%),
+                linear-gradient(135deg, rgba(201,168,76,0.06), rgba(10,18,36,0.55) 100%);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.15px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.32);
+            cursor: pointer;
+            transition: transform 0.20s ease, border-color 0.20s ease, background 0.20s ease, box-shadow 0.20s ease;
+        }
+
+        .action-btn:hover {
+            transform: translateX(3px);
+            border-color: var(--glass-border-gold);
+            background:
+                radial-gradient(circle at top left, rgba(201,168,76,0.18), transparent 42%),
+                linear-gradient(135deg, rgba(201,168,76,0.10), rgba(14,24,50,0.62) 100%);
+            box-shadow: 0 10px 34px rgba(201,168,76,0.10);
+        }
+
+        .action-btn:active {
+            transform: translateX(1px) scale(0.99);
+        }
+
+        .action-btn-icon {
+            font-size: 16px;
+            line-height: 1;
+        }
+
+        /* ───── Socials Panel ───── */
+        .socials-panel {
+            position: fixed;
+            left: 28px;
+            bottom: 50%;
+            transform: translateY(50%) translateX(-18px);
+            width: 320px;
+            z-index: 50;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.26s ease, transform 0.30s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .socials-panel.open {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(50%) translateX(0px);
+        }
+
+        .socials-shell {
+            padding: 18px;
+            border-radius: 18px;
+            border: 1px solid var(--glass-border);
+            background:
+                radial-gradient(circle at top left, var(--gold-soft), transparent 36%),
+                linear-gradient(135deg, rgba(201,168,76,0.05), rgba(10,18,36,0.70) 60%, rgba(5,8,18,0.80) 100%);
+            backdrop-filter: blur(14px);
+            box-shadow: 0 24px 64px rgba(0,0,0,0.54);
+        }
+
+        .socials-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .socials-kicker {
+            font-size: 10px;
+            color: var(--gold);
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            opacity: 0.85;
+            margin-bottom: 3px;
+        }
+
+        .socials-title {
+            font-size: 19px;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .panel-close-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 9px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.04);
+            color: rgba(255,255,255,0.72);
+            font-size: 17px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.18s ease, color 0.18s ease, transform 0.18s ease;
+        }
+
+        .panel-close-btn:hover {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .socials-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 11px 14px;
+            border-radius: 11px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.03);
+            color: rgba(255,255,255,0.82);
+            font-family: 'Inter', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: left;
+            transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+        }
+
+        .social-item:hover {
+            transform: translateX(4px);
+            border-color: var(--glass-border-gold);
+            background: var(--gold-soft);
+            color: #fff;
+        }
+
+        .social-item-icon {
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        /* ───── Team Panel (Modal) ───── */
+        .team-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0,0,0,0);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.22s ease, background 0.22s ease;
+        }
+
+        .team-overlay.open {
+            opacity: 1;
+            pointer-events: auto;
+            background: rgba(0,0,0,0.62);
+        }
+
+        .team-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: min(980px, calc(100vw - 80px));
+            z-index: 110;
+            opacity: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%) scale(0.97);
+            transition: opacity 0.24s ease, transform 0.28s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .team-panel.open {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .panel-shell {
+            padding: 26px 28px 22px;
+            border-radius: 22px;
+            border: 1px solid var(--glass-border);
+            background:
+                radial-gradient(circle at top left, var(--gold-soft), transparent 36%),
+                linear-gradient(145deg, rgba(201,168,76,0.05), rgba(10,18,36,0.80) 58%, rgba(4,8,20,0.90) 100%);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 36px 100px rgba(0,0,0,0.72);
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .panel-kicker {
+            font-size: 10px;
+            color: var(--gold);
+            letter-spacing: 1.8px;
+            text-transform: uppercase;
+            opacity: 0.85;
+            margin-bottom: 4px;
+        }
+
+        .panel-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #fff;
+            letter-spacing: -0.3px;
+        }
+
+        .panel-sub {
+            font-size: 12px;
+            color: rgba(255,255,255,0.54);
+            margin-top: 4px;
+        }
+
+        .panel-close {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            border: 1px solid var(--glass-border);
+            background:
+                radial-gradient(circle at top left, var(--gold-soft), transparent 40%),
+                rgba(10,18,36,0.40);
+            color: rgba(255,255,255,0.80);
+            font-size: 20px;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.18s ease, transform 0.18s ease, color 0.18s ease;
+        }
+
+        .panel-close:hover {
+            background:
+                radial-gradient(circle at top left, rgba(201,168,76,0.22), transparent 40%),
+                rgba(14,24,50,0.55);
+            color: #fff;
+            transform: scale(1.06);
+        }
+
+        /* ───── Team Stage / Card Carousel ───── */
+        .team-stage {
+            position: relative;
+            width: 100%;
+            height: 520px;
+            overflow: hidden;
+            touch-action: none;
+            cursor: grab;
+        }
+
+        .team-stage.dragging { cursor: grabbing; }
+
+        .team-card {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: min(320px, calc(100vw - 120px));
+            height: 470px;
+            padding: 20px 20px 18px;
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            background:
+                radial-gradient(circle at top left, var(--member-hl-strong, rgba(255,255,255,0.08)) 0%, var(--member-hl-soft, rgba(255,255,255,0.00)) 52%),
+                linear-gradient(180deg, rgba(22,26,38,0.96) 0%, rgba(12,15,26,0.98) 52%, rgba(6,8,16,1) 100%);
+            box-shadow: 0 18px 44px rgba(0,0,0,0.38);
+            overflow: hidden;
+            transform-origin: center center;
+            will-change: transform, opacity;
+        }
+
+        .team-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            pointer-events: none;
+            background: linear-gradient(135deg, rgba(255,255,255,0.035), rgba(255,255,255,0) 38%);
+        }
+
+        .card-top {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .card-avatar {
+            width: 68px;
+            height: 68px;
+            border-radius: 14px;
+            object-fit: cover;
+            flex-shrink: 0;
+            border: 1px solid var(--glass-border-gold);
+            box-shadow: 0 8px 22px rgba(0,0,0,0.32);
+        }
+
+        .card-head {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            padding-top: 2px;
+        }
+
+        .card-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .card-role {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gold);
+            opacity: 0.90;
+        }
+
+        .card-tag {
+            display: inline-flex;
+            width: fit-content;
+            font-size: 10px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.62);
+            padding: 4px 9px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.06);
+            letter-spacing: 0.4px;
+        }
+
+        .card-divider {
+            position: relative;
+            z-index: 2;
+            height: 1px;
+            background: linear-gradient(to right, var(--glass-border-gold), transparent 70%);
+            margin-bottom: 14px;
+        }
+
+        .card-bio {
+            position: relative;
+            z-index: 2;
+            font-size: 13px;
+            line-height: 1.65;
+            color: rgba(255,255,255,0.76);
+            margin-bottom: 16px;
+            min-height: 90px;
+        }
+
+        .card-meta {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px 14px;
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            min-width: 0;
+        }
+
+        .meta-label {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: var(--gold);
+            opacity: 0.68;
+        }
+
+        .meta-value {
+            font-size: 12px;
+            color: rgba(255,255,255,0.86);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* ───── Team Controls ───── */
+        .team-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 14px;
+        }
+
+        .nav-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            border: 1px solid var(--glass-border-gold);
+            background:
+                radial-gradient(circle at top left, var(--gold-soft), transparent 42%),
+                rgba(10,18,36,0.44);
+            color: rgba(255,255,255,0.82);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.18s ease, transform 0.18s ease, color 0.18s ease;
+        }
+
+        .nav-btn:hover {
+            background:
+                radial-gradient(circle at top left, rgba(201,168,76,0.22), transparent 42%),
+                rgba(14,24,50,0.55);
+            color: #fff;
+            transform: scale(1.06);
+        }
+
+        .nav-btn:active { transform: scale(0.97); }
+
+        .team-dots {
+            display: flex;
+            gap: 7px;
+            align-items: center;
+            min-width: 80px;
+            justify-content: center;
+        }
+
+        .team-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.18);
+            opacity: 0.65;
+            cursor: pointer;
+            transition: transform 0.22s ease, background 0.22s ease, opacity 0.22s ease;
+        }
+
+        .team-dot.active {
+            background: var(--gold);
+            opacity: 1;
+            transform: scale(1.35);
+        }
+
+        /* ───── Music / Audio UI ───── */
+        .music-ui {
+            position: fixed;
+            bottom: 22px;
+            left: 28px;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            border-radius: 14px;
+            border: 1px solid var(--glass-border);
+            background:
+                radial-gradient(circle at top left, var(--gold-soft), transparent 38%),
+                linear-gradient(135deg, rgba(201,168,76,0.05), rgba(10,18,36,0.55) 60%, rgba(5,8,18,0.65) 100%);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.38);
+        }
+
+        .music-cover {
+            width: 44px;
+            height: 44px;
+            border-radius: 9px;
+            object-fit: cover;
+            border: 1px solid var(--glass-border-gold);
+            flex-shrink: 0;
+        }
+
+        .music-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            min-width: 0;
+        }
+
+        .music-label {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1.6px;
+            color: var(--gold);
+            opacity: 0.80;
+        }
+
+        .music-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 180px;
+        }
+
+        .music-time {
+            font-size: 11px;
+            color: rgba(255,255,255,0.52);
+        }
+
+        .music-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            margin-left: 6px;
+        }
+
+        .pause-btn {
+            padding: 5px 12px;
+            border-radius: 7px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.78);
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            letter-spacing: 0.2px;
+            transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+        }
+
+        .pause-btn:hover {
+            background: var(--gold-soft);
+            border-color: var(--glass-border-gold);
+            color: #fff;
+        }
+
+        .pause-btn.paused {
+            color: var(--gold);
+            border-color: var(--glass-border-gold);
+            background: var(--gold-soft);
+        }
+
+        .volume-wrap {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .vol-icon {
+            font-size: 12px;
+            color: rgba(255,255,255,0.44);
+        }
+
+        .volume-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 90px;
+            height: 4px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.14);
+            cursor: pointer;
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 13px;
+            height: 13px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 6px rgba(201,168,76,0.45);
+            cursor: pointer;
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 13px;
+            height: 13px;
+            background: var(--gold);
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* ───── Loading Bar ───── */
+        .loading-bar-wrap {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+            padding: 0 28px 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 5px;
+        }
+
+        .loading-status {
+            font-size: 10px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.42);
+        }
+
+        .loading-track {
+            width: 220px;
+            height: 3px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.10);
+            overflow: hidden;
+        }
+
+        .loading-fill {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(to right, rgba(201,168,76,0.70), var(--gold));
+            width: 0%;
+            transition: width 0.35s ease;
+            box-shadow: 0 0 8px rgba(201,168,76,0.40);
+        }
+
+        /* ───── Responsive ───── */
+        @media (max-width: 900px) {
+            .team-panel { width: calc(100vw - 40px); }
+            .panel-shell { min-height: unset; }
+            .team-stage { height: 490px; }
+            .team-card { width: min(300px, calc(100vw - 90px)); height: 450px; }
+        }
+
+        @media (max-width: 640px) {
+            .left-actions { left: 16px; }
+            .socials-panel { left: 16px; width: calc(100vw - 32px); }
+            .team-panel { width: calc(100vw - 22px); }
+            .panel-shell { padding: 18px 16px 16px; }
+            .team-stage { height: 450px; }
+            .team-card { width: calc(100vw - 50px); height: 410px; }
+            .music-ui { left: 16px; right: 16px; bottom: 18px; }
+            .loading-bar-wrap { left: 16px; right: 16px; padding-bottom: 64px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="banner">
-    <img src="images/background.png" alt="San Andreas Department of Justice Roleplay" />
-    <div class="banner-title">
-      <h1>San Andreas Department of Justice Roleplay</h1>
-      <p>FiveM &mdash; Hardcore Realism &mdash; Full Server</p>
-    </div>
-  </div>
-  <div class="page-body">
-    <div class="prose">
-      <h2>Welcome to SA DOJ Roleplay.</h2>
-      <p>
-        <strong>San Andreas Department of Justice Roleplay</strong> is a new FiveM community built on one principle — realism. We are a full server. Law enforcement, civilian life, Fire and EMS, criminal activity, and everything in between. Everyone has a role here and everyone is held to the same standard.
-      </p>
-      <p>
-        We are not a Hardcore Realism server. If you want serious, grounded roleplay with real command structure and a community that actually gives a damn about quality, this is the place.
-      </p>
-      <p>
-        San Andreas Department of Justice Roleplay is brand new and we are building this the right way from the ground up. That means the right people, the right culture, and the right foundation before anything else. Applications are open across all departments and civilian roles right now.
-      </p>
-      <hr class="divider" />
-      <h3>Community Requirements</h3>
-      <ul>
-        <li>Be 18 years or older</li>
-        <li>Speak and understand English</li>
-        <li>Own a legal copy of GTA V on PC</li>
-        <li>Have a capable PC, working headset, and microphone</li>
-        <li>Be willing to follow chain of command and server rules</li>
-        <li>Join our Discord and submit your application there</li>
-      </ul>
-      <hr class="divider" />
-      <h2>Law Enforcement Departments</h2>
-      <p>Three agencies are active at launch. Each operates its own command structure and jurisdiction. The realism standard is the same across all three.</p>
-    </div>
-    <div class="dept-list">
-      <div class="dept-row">
-        <span class="dept-abbr">SASP</span>
-        <div class="dept-info">
-          <strong>San Andreas State Police</strong>
-          <span>Statewide patrol, highway enforcement, and major incident command across all of San Andreas.</span>
+
+    <!-- Background Video -->
+    <video id="bg-video" autoplay muted loop playsinline preload="auto">
+        <source src="disp/loading_screen/video.mp4" type="video/mp4">
+    </video>
+
+    <!-- Background Audio -->
+    <audio id="bg-audio" autoplay loop preload="auto">
+        <source src="disp/loading_screen/audio.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Dim overlay -->
+    <div class="screen-overlay"></div>
+
+    <!-- Top Bar -->
+    <header class="top-bar">
+        <div class="brand">
+            <div class="brand-emblem">⚖️</div>
+            <div class="brand-text">
+                <div class="brand-kicker">San Andreas</div>
+                <div class="brand-name">Department of Justice</div>
+            </div>
         </div>
-      </div>
-      <div class="dept-row">
-        <span class="dept-abbr">LSPD</span>
-        <div class="dept-info">
-          <strong>Los Santos Police Department</strong>
-          <span>City policing, active urban response, and tight scene discipline inside Los Santos.</span>
+        <div class="server-status">
+            <div class="status-dot"></div>
+            Server Online
         </div>
-      </div>
-      <div class="dept-row">
-        <span class="dept-abbr">BCSO</span>
-        <div class="dept-info">
-          <strong>Blaine County Sheriff&rsquo;s Office</strong>
-          <span>County enforcement, rural calls, and open territory coverage across Blaine County.</span>
+    </header>
+
+    <!-- Left Action Buttons -->
+    <div class="left-actions" id="leftActions">
+        <button class="action-btn" id="socialsLaunch">
+            <span class="action-btn-icon">🔗</span> Our Socials
+        </button>
+        <button class="action-btn" id="teamLaunch">
+            <span class="action-btn-icon">👥</span> Our Team
+        </button>
+    </div>
+
+    <!-- Socials Panel -->
+    <section id="socialsPanel" class="socials-panel" aria-hidden="true">
+        <div class="socials-shell">
+            <div class="socials-header">
+                <div>
+                    <div class="socials-kicker">SA-DOJ Networks</div>
+                    <div class="socials-title">Our Socials</div>
+                </div>
+                <button class="panel-close-btn" id="socialsClose" aria-label="Close socials">✕</button>
+            </div>
+            <div class="socials-list">
+                <button class="social-item" type="button" data-url="https://sadoj.net">
+                    <span class="social-item-icon">🌐</span>
+                    <span>SA-DOJ Website</span>
+                </button>
+                <button class="social-item" type="button" data-url="https://discord.gg/sadoj">
+                    <span class="social-item-icon">💬</span>
+                    <span>SA-DOJ Discord</span>
+                </button>
+                <button class="social-item" type="button" data-url="https://www.youtube.com/@sadoj">
+                    <span class="social-item-icon">▶️</span>
+                    <span>SA-DOJ YouTube</span>
+                </button>
+                <button class="social-item" type="button" data-url="https://www.tiktok.com/@sadoj">
+                    <span class="social-item-icon">🎵</span>
+                    <span>SA-DOJ TikTok</span>
+                </button>
+            </div>
         </div>
-      </div>
+    </section>
+
+    <!-- Team Overlay -->
+    <div class="team-overlay" id="teamOverlay"></div>
+
+    <!-- Team Panel -->
+    <section id="teamPanel" class="team-panel" aria-hidden="true">
+        <div class="panel-shell">
+            <div class="panel-header">
+                <div>
+                    <div class="panel-kicker">SA-DOJ Management</div>
+                    <div class="panel-title">Our Team</div>
+                    <div class="panel-sub">Meet the founders and staff of San Andreas Department of Justice</div>
+                </div>
+                <button class="panel-close" id="teamClose" aria-label="Close team panel">✕</button>
+            </div>
+            <div id="teamStage" class="team-stage"></div>
+            <div class="team-controls">
+                <button id="teamPrev" class="nav-btn" aria-label="Previous">&#8592;</button>
+                <div id="teamDots" class="team-dots"></div>
+                <button id="teamNext" class="nav-btn" aria-label="Next">&#8594;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Music UI -->
+    <div class="music-ui">
+        <img class="music-cover" src="disp/loading_screen/cover.png" alt="Album art" onerror="this.style.display='none'">
+        <div class="music-info">
+            <div class="music-label">Now Playing</div>
+            <div class="music-title" id="musicTitle">Loading...</div>
+            <div class="music-time" id="musicTime">—</div>
+        </div>
+        <div class="music-controls">
+            <button class="pause-btn" id="pauseBtn">Pause</button>
+            <div class="volume-wrap">
+                <span class="vol-icon">🔊</span>
+                <input type="range" class="volume-slider" id="volumeSlider" min="0" max="100" value="80">
+            </div>
+        </div>
     </div>
-    <hr class="divider" />
-    <p class="cards-heading">What Else Is in the Server</p>
-    <div class="cards-grid">
-      <div class="card">
-        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-        </svg>
-        <h4>Civilian Roleplay</h4>
-        <p>Live your life in San Andreas. Run a business, own property, and interact with the world around you as an everyday citizen.</p>
-      </div>
-      <div class="card">
-        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
-        </svg>
-        <h4>Apartment &amp; Housing</h4>
-        <p>Rent your own place, pay bills, and build out your civilian life with a real home base inside the server.</p>
-      </div>
-      <div class="card">
-        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-        </svg>
-        <h4>Business &amp; Economy</h4>
-        <p>Own and operate businesses, engage with the in-server economy, and build something other players actually interact with.</p>
-      </div>
-      <div class="card">
-        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-        </svg>
-        <h4>Fire &amp; EMS</h4>
-        <p>Emergency medical and fire response roles. Played with the same realism standard as law enforcement.</p>
-      </div>
-      <div class="card">
-        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
-        </svg>
-        <h4>Legal System</h4>
-        <p>Attorneys, judges, and court proceedings. The DOJ name is not just for show — civilian legal roleplay is part of this server.</p>
-      </div>
-      <div class="card">
-        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-          <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-        </svg>
-        <h4>Criminal Activity</h4>
-        <p>Organized crime and street-level play handled realistically and within server standards. Not an excuse to minge.</p>
-      </div>
+
+    <!-- Loading Bar -->
+    <div class="loading-bar-wrap">
+        <div class="loading-status" id="loadingStatus">Connecting to server…</div>
+        <div class="loading-track">
+            <div class="loading-fill" id="loadingFill"></div>
+        </div>
     </div>
-    <hr class="divider" />
-    <div class="prose">
-      <h2>How to Join</h2>
-      <p>Getting started is straightforward. Join our Discord, read the rules, and submit your application for the department or civilian role you want. Once reviewed and approved you will be whitelisted and guided through onboarding.</p>
-      <p>Applications are open right now for all law enforcement departments and civilian roles. We are a new server and this is a ground floor opportunity to help build the culture the right way from day one.</p>
-    </div>
-    <div class="cta-box">
-      <h3>Applications Are Open.</h3>
-      <p>SA DOJ is recruiting for all departments and civilian roles. Join the Discord and put in your application today.</p>
-      <a href="#" class="btn btn-primary">Join Our Discord</a>
-    </div>
-    <div class="prose" style="margin-top: 48px; text-align: center;">
-      <p style="font-size:13px; color:#4e5358;">
-        To everyone who joins us and helps build this community from day one &mdash; thank you.<br />
-        <strong style="color:#6d7479;">Together, we build something worth being part of.</strong>
-      </p>
-    </div>
-  </div>
-  <footer>
-    <p class="footer-name">SAN ANDREAS DEPARTMENT OF JUSTICE ROLEPLAY</p>
-    <p class="footer-copy">&copy; 2024 San Andreas Department of Justice Roleplay &mdash; All rights reserved.</p>
-  </footer>
+
+    <!-- Inline Audio/Video Bootstrap -->
+    <script>
+    (function () {
+        /* ── Audio ── */
+        const audio = document.getElementById("bg-audio");
+        const slider = document.getElementById("volumeSlider");
+        const pauseBtn = document.getElementById("pauseBtn");
+        const musicTitle = document.getElementById("musicTitle");
+        const musicTime = document.getElementById("musicTime");
+
+        audio.volume = 0.80;
+
+        function formatTime(s) {
+            if (!isFinite(s)) return "—";
+            const m = Math.floor(s / 60);
+            const sec = Math.floor(s % 60);
+            return `${m}:${sec.toString().padStart(2, "0")}`;
+        }
+
+        function updatePauseBtn() {
+            if (audio.paused) {
+                pauseBtn.textContent = "Play";
+                pauseBtn.classList.add("paused");
+            } else {
+                pauseBtn.textContent = "Pause";
+                pauseBtn.classList.remove("paused");
+            }
+        }
+
+        // Extract filename as track name
+        function setTrackName() {
+            const src = audio.currentSrc || audio.querySelector("source")?.src || "";
+            const file = src.split("/").pop().replace(/\.[^.]+$/, "").replace(/[-_]/g, " ");
+            musicTitle.textContent = file || "SA-DOJ Radio";
+        }
+
+        audio.addEventListener("loadedmetadata", () => {
+            setTrackName();
+        });
+
+        audio.addEventListener("timeupdate", () => {
+            if (!isFinite(audio.duration)) return;
+            const remaining = audio.duration - audio.currentTime;
+            musicTime.textContent = "Remaining: " + formatTime(remaining);
+        });
+
+        audio.addEventListener("play", updatePauseBtn);
+        audio.addEventListener("pause", updatePauseBtn);
+        audio.addEventListener("error", () => { musicTitle.textContent = "SA-DOJ Radio"; });
+
+        pauseBtn.addEventListener("click", () => {
+            if (audio.paused) {
+                audio.play().catch(() => {});
+            } else {
+                audio.pause();
+            }
+        });
+
+        slider.addEventListener("input", () => {
+            audio.volume = slider.value / 100;
+        });
+
+        updatePauseBtn();
+        setTrackName();
+
+        /* ── Video: ensure it plays even on browsers that need a user gesture ── */
+        const video = document.getElementById("bg-video");
+        video.muted = true;
+        video.play().catch(() => {
+            document.addEventListener("click", () => video.play().catch(() => {}), { once: true });
+        });
+
+        /* ── Socials Panel ── */
+        const socialsLaunch = document.getElementById("socialsLaunch");
+        const socialsPanel = document.getElementById("socialsPanel");
+        const socialsClose = document.getElementById("socialsClose");
+
+        function openSocials() {
+            closeTeam();
+            socialsPanel.classList.add("open");
+            socialsPanel.setAttribute("aria-hidden", "false");
+        }
+
+        function closeSocials() {
+            socialsPanel.classList.remove("open");
+            socialsPanel.setAttribute("aria-hidden", "true");
+        }
+
+        socialsLaunch.addEventListener("click", () => {
+            socialsPanel.classList.contains("open") ? closeSocials() : openSocials();
+        });
+
+        socialsClose.addEventListener("click", closeSocials);
+
+        document.querySelectorAll(".social-item").forEach((btn) => {
+            btn.addEventListener("click", () => {
+                const url = btn.getAttribute("data-url");
+                if (!url) return;
+                const a = document.createElement("a");
+                a.href = url;
+                a.target = "_blank";
+                a.rel = "noopener noreferrer";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            });
+        });
+
+        /* ── Team panel open/close (delegated to index.js) ── */
+        function closeTeam() {
+            const panel = document.getElementById("teamPanel");
+            const overlay = document.getElementById("teamOverlay");
+            if (panel) { panel.classList.remove("open"); panel.setAttribute("aria-hidden", "true"); }
+            if (overlay) { overlay.classList.remove("open"); }
+        }
+
+        window.__closeTeam = closeTeam;
+        window.__closeSocials = closeSocials;
+
+        /* ── Loading bar simulation ── */
+        const fill = document.getElementById("loadingFill");
+        const statusEl = document.getElementById("loadingStatus");
+        const steps = [
+            { pct: 8,  label: "Loading assets…" },
+            { pct: 22, label: "Fetching player data…" },
+            { pct: 40, label: "Streaming resources…" },
+            { pct: 58, label: "Connecting to server…" },
+            { pct: 74, label: "Verifying session…" },
+            { pct: 88, label: "Almost there…" },
+            { pct: 97, label: "Ready!" }
+        ];
+        let si = 0;
+
+        function advanceLoader() {
+            if (si >= steps.length) return;
+            const s = steps[si++];
+            fill.style.width = s.pct + "%";
+            statusEl.textContent = s.label;
+            const delay = 900 + Math.random() * 1400;
+            setTimeout(advanceLoader, delay);
+        }
+
+        setTimeout(advanceLoader, 600);
+    })();
+    </script>
+
+    <script src="index.js"></script>
 </body>
 </html>
